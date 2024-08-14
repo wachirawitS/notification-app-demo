@@ -14,7 +14,7 @@ const ClientSocketComponent = ({
   const [messageStoreRoom, setMessageStoreRoom] = useState<any>({});
   const [messageMachineRoom, setMessageMachineRoom] = useState<any>({});
   useEffect(() => {
-    const newSocket = io("http://localhost:3010");
+    const newSocket = io(info.socketUrl);
     setSocket(newSocket);
 
     // define room
@@ -80,6 +80,9 @@ const ClientSocketComponent = ({
         >
           X
         </button>
+      </div>
+      <div className="p-2 border-b">
+        socketUrl: <span className="font-bold text-amber-600">{info.socketUrl}</span>
       </div>
       <div className="text-sm">
         <pre className="p-2 border-b">

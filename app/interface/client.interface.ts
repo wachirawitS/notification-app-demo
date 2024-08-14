@@ -8,4 +8,5 @@ export interface IClientInfo {
     zoneId: string;
     storeId: string;
     machineId: string;
+    socketUrl: string;
 }

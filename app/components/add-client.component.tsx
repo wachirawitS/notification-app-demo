@@ -26,12 +26,12 @@ import {
 import { CirclePlus } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Input } from "@/components/ui/input";
-import { Separator } from "@/components/ui/separator";
 import { toast } from "@/components/ui/use-toast";
 
 export type TEmitAddClientSubmit = {
   id: number;
   info: IClientInfo;
+
 };
 
 type Props = {
@@ -48,6 +48,9 @@ const addClientformSchema = z.object({
   machineId: z.string().min(1, {
     message: "machine id is required",
   }),
+  socketUrl: z.string().min(1, {
+    message: "service url is required",
+  }),
 });
 
 export type AddClientFormSchema = z.infer<typeof addClientformSchema>;
@@ -59,6 +62,7 @@ const AddClientComponent = ({ submit }: Props) => {
       machineId: "",
       storeId: "",
       zoneId: "",
+      socketUrl: "http://localhost:"
     },
   });
   const onSubmit = (values: AddClientFormSchema) => {
@@ -116,6 +120,19 @@ const AddClientComponent = ({ submit }: Props) => {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>MachineID :</FormLabel>
+                  <FormControl>
+                    <Input {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="socketUrl"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>SocketUrl :</FormLabel>
                   <FormControl>
                     <Input {...field} />
                   </FormControl>
